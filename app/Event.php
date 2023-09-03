@@ -31,6 +31,7 @@ class Event extends Model
     protected $fillable = [
         'name',
         'color',
+        'meridien',
         'end_time',
         'event_id',
         'start_time',

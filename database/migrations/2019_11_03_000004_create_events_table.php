@@ -19,6 +19,7 @@ class CreateEventsTable extends Migration
 
             $table->string('recurrence');
             $table->string('color');
+            $table->string('meridiem')->default('short');
 
             $table->timestamps();
 

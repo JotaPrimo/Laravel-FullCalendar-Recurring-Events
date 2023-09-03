@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Event;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Response;
+use PHPUnit\Util\Json;
 
 class SystemCalendarController extends Controller
 {
@@ -17,13 +19,22 @@ class SystemCalendarController extends Controller
             'prefix'     => '',
             'suffix'     => '',
             'route'      => 'admin.events.edit',
-            'eventColor' => ''
+            'eventColor' => '',
+            'eventTimeFormat' => ''
         ],
+    ];
+
+    protected $eventTimeFormat = [
+        'hour' => 'numeric',
+        'minute' => '2-digit',
+        'meridiem' => 'short'
     ];
 
     public function index()
     {
         $events = [];
+
+        // dd(Response::json($this->eventTimeFormat)->getData());
 
         foreach ($this->sources as $source) {
             foreach (Event::all() as $model) {
@@ -39,6 +50,7 @@ class SystemCalendarController extends Controller
                     'start' => $crudFieldValue,
                     'end'   => $model->{$source['end_field']},
                     'color'   => $model->color,
+                    'eventTimeFormat'   => Response::json($this->eventTimeFormat)->getData(),
                     'url'   => route($source['route'], $model->id),
                 ];
             }
