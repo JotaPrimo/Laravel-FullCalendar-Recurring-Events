@@ -38,7 +38,7 @@ class SystemCalendarController extends Controller
                         . " " . $source['suffix']),
                     'start' => $crudFieldValue,
                     'end'   => $model->{$source['end_field']},
-                    'color'   => $model->id % 2 == 0 ? '#0000FF' : '#000080',
+                    'color'   => $model->color,
                     'url'   => route($source['route'], $model->id),
                 ];
             }

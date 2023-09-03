@@ -101,7 +101,22 @@
                         {{ trans('cruds.event.fields.end_time_helper') }}
                     </p>
                 </div>
+                <div class="form-group col-md-4 {{ $errors->has('hora_fim') ? 'has-error' : '' }}">
+                    <label for="hora_fim">hora_fim</label>
+
+                    <select name="color" class="form-control" id="color">
+                        @foreach(\App\Event::CORES as $cor)
+                            <option class="text-white" value="{{ $cor[0] }}" style="background-color: {{$cor[0]}}">{{ $cor[1] }}</option>
+                        @endforeach
+                        <option></option>
+                    </select>
+                    <p class="helper-block">
+                        {{ trans('cruds.event.fields.end_time_helper') }}
+                    </p>
+                </div>
             </div>
+
+
             <div>
                 <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
             </div>

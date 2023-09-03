@@ -49,6 +49,7 @@ class RecurrenceObserver
                         'start_time'    => $startTime,
                         'end_time'      => $endTime,
                         'recurrence'    => $event->recurrence,
+                        'color'    => $event->color,
                     ]);
                 }
         }

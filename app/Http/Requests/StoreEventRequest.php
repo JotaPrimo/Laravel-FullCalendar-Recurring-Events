@@ -35,6 +35,8 @@ class StoreEventRequest extends FormRequest
             'recurrence' => [
                 'required',
             ],
+
+            'color' => 'required'
         ];
     }
 

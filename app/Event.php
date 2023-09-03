@@ -21,16 +21,16 @@ class Event extends Model
     ];
 
     const RECURRENCE_RADIO = [
-        'none'    => 'None',
-        'daily'   => 'Daily',
-        'weekdays'   => 'WeekDays',
-        'weekly'  => 'Weekly',
+        'none' => 'None',
+        'daily' => 'Daily',
+        'weekdays' => 'WeekDays',
+        'weekly' => 'Weekly',
         'monthly' => 'Monthly',
     ];
 
     protected $fillable = [
         'name',
-        'eventColor',
+        'color',
         'end_time',
         'event_id',
         'start_time',
@@ -40,14 +40,22 @@ class Event extends Model
         'deleted_at',
     ];
 
-    protected $cores = [
-        '#000080',
-        '#0000FF',
-        '#4169E1',
-        '#00FF7F',
-        '#008000',
-        '#A0522D',
-        '#9932CC'
+    const CORES = [
+        [
+            '#191970', 'MidnightBlue'
+        ],
+        [
+            '#0000CD', 'MediumBlue'
+        ],
+        [
+            '#4682B4', 'SteelBlue'
+        ],
+        [
+            '#00BFFF', 'DeepSkyBlue'
+        ],
+        [
+            '#008B8B', 'DarkCyan'
+        ]
     ];
 
     public function events()
