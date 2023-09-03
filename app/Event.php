@@ -23,6 +23,7 @@ class Event extends Model
     const RECURRENCE_RADIO = [
         'none'    => 'None',
         'daily'   => 'Daily',
+        'weekdays'   => 'WeekDays',
         'weekly'  => 'Weekly',
         'monthly' => 'Monthly',
     ];

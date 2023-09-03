@@ -22,6 +22,10 @@ class RecurrenceObserver
                     'times'     => 365,
                     'function'  => 'addDay'
                 ],
+                'weekdays'     => [
+                    'times'     => 260,
+                    'function'  => 'addWeekdays'
+                ],
                 'weekly'    => [
                     'times'     => 52,
                     'function'  => 'addWeek'
@@ -97,7 +101,7 @@ class RecurrenceObserver
             $events = $event->event->events()->whereDate('start_time', '>', $event->start_time)->pluck('id');
         else
             $events = [];
-        
+
             Event::whereIn('id', $events)->delete();
     }
 }
