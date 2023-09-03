@@ -18,6 +18,8 @@ class StoreEventRequest extends FormRequest
 
     public function rules()
     {
+
+       // dd($this->all());
         return [
             'name'       => [
                 'required',
@@ -34,5 +36,15 @@ class StoreEventRequest extends FormRequest
                 'required',
             ],
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            // 'start_time' => $this->data_pt .' ' . $this->hora_inicio . ':00',
+            // 'end_time' => $this->data_pt .' ' . $this->hora_inicio . ':00',
+            'start_time' => $this->data_pt .' ' . $this->hora_inicio . ':00',
+            'end_time' => $this->data_pt .' ' . $this->hora_fim . ':00',
+        ]);
     }
 }

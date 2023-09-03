@@ -58,10 +58,10 @@
                                 {{ $event->name ?? '' }}
                             </td>
                             <td>
-                                {{ $event->start_time ?? '' }}
+                                {{ \App\Services\DataService::formatarDataDMYHMS($event->start_time) ?? '' }}
                             </td>
                             <td>
-                                {{ $event->end_time ?? '' }}
+                                {{ \App\Services\DataService::formatarDataDMYHMS($event->end_time) ?? '' }}
                             </td>
                             <td>
                                 {{ App\Event::RECURRENCE_RADIO[$event->recurrence] ?? '' }}
@@ -83,8 +83,8 @@
                                 @endcan
 
                                 @can('event_delete')
-                                    <form action="{{ route('admin.events.destroy', $event->id) }}" 
-                                        method="POST" 
+                                    <form action="{{ route('admin.events.destroy', $event->id) }}"
+                                        method="POST"
                                         onsubmit="return confirm('{{ $event->events_count || $event->event ? 'Do you want to delete future recurring events, too?' : trans('global.areYouSure') }}');" style="display: inline-block;"
                                     >
                                         <input type="hidden" name="_method" value="DELETE">

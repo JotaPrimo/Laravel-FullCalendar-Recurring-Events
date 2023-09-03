@@ -32,7 +32,12 @@ class EventsController extends Controller
 
     public function store(StoreEventRequest $request)
     {
-        Event::create($request->all());
+        $event = Event::create($request->validated());
+        $event->update(
+            [
+                'event_id' => $event->id
+            ]
+        );
 
         return redirect()->route('admin.systemCalendar');
     }
