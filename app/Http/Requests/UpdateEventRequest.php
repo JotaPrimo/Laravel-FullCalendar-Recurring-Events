@@ -35,4 +35,14 @@ class UpdateEventRequest extends FormRequest
             ],
         ];
     }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            // 'start_time' => $this->data_pt .' ' . $this->hora_inicio . ':00',
+            // 'end_time' => $this->data_pt .' ' . $this->hora_inicio . ':00',
+            'start_time' => $this->data_pt .' ' . $this->hora_inicio . ':00',
+            'end_time' => $this->data_pt .' ' . $this->hora_fim . ':00',
+        ]);
+    }
 }

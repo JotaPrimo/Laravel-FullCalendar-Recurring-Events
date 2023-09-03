@@ -18,6 +18,7 @@ class CreateEventsTable extends Migration
             $table->datetime('end_time');
 
             $table->string('recurrence');
+            $table->string('eventColor')->default("#008000");
 
             $table->timestamps();
 

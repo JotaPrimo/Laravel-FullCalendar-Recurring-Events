@@ -30,6 +30,7 @@ class Event extends Model
 
     protected $fillable = [
         'name',
+        'eventColor',
         'end_time',
         'event_id',
         'start_time',
@@ -37,6 +38,16 @@ class Event extends Model
         'created_at',
         'updated_at',
         'deleted_at',
+    ];
+
+    protected $cores = [
+        '#000080',
+        '#0000FF',
+        '#4169E1',
+        '#00FF7F',
+        '#008000',
+        '#A0522D',
+        '#9932CC'
     ];
 
     public function events()

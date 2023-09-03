@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Event;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 
@@ -16,6 +17,7 @@ class SystemCalendarController extends Controller
             'prefix'     => '',
             'suffix'     => '',
             'route'      => 'admin.events.edit',
+            'eventColor' => ''
         ],
     ];
 
@@ -24,7 +26,7 @@ class SystemCalendarController extends Controller
         $events = [];
 
         foreach ($this->sources as $source) {
-            foreach ($source['model']::all() as $model) {
+            foreach (Event::all() as $model) {
                 $crudFieldValue = $model->getOriginal($source['date_field']);
 
                 if (!$crudFieldValue) {
@@ -36,6 +38,7 @@ class SystemCalendarController extends Controller
                         . " " . $source['suffix']),
                     'start' => $crudFieldValue,
                     'end'   => $model->{$source['end_field']},
+                    'color'   => $model->id % 2 == 0 ? '#0000FF' : '#000080',
                     'url'   => route($source['route'], $model->id),
                 ];
             }
