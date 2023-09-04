@@ -38,7 +38,7 @@
 
                 // Define o formato da hora para AM/PM
                 events: events,
-                timeFormat: 'h(:mm) a'
+                timeFormat: 'h(:mm) A'
             })
         });
     </script>

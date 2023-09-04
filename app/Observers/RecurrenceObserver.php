@@ -44,6 +44,8 @@ class RecurrenceObserver
                 {
                     $startTime->{$recurrence['function']}();
                     $endTime->{$recurrence['function']}();
+                    // criar uma forma de comparar o endtime com os feriados
+                    // se for difernte faz o create
                     $event->events()->create([
                         'name'          => $event->name,
                         'start_time'    => $startTime,
