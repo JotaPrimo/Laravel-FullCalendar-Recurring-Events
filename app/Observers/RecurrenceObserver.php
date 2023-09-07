@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Event;
+use App\Feriado;
 use Carbon\Carbon;
 
 class RecurrenceObserver
@@ -15,6 +16,9 @@ class RecurrenceObserver
      */
     public static function created(Event $event)
     {
+        $feriados = Feriado::getFeriadosDepoisDeHoje();
+        $flipFeriados = array_flip($feriados);
+
         if(!$event->event()->exists())
         {
             $recurrences = [
@@ -44,15 +48,16 @@ class RecurrenceObserver
                 {
                     $startTime->{$recurrence['function']}();
                     $endTime->{$recurrence['function']}();
-                    // criar uma forma de comparar o endtime com os feriados
-                    // se for difernte faz o create
-                    $event->events()->create([
-                        'name'          => $event->name,
-                        'start_time'    => $startTime,
-                        'end_time'      => $endTime,
-                        'recurrence'    => $event->recurrence,
-                        'color'    => $event->color,
-                    ]);
+
+                    if (!array_key_exists($startTime->format('Y-m-d'), $flipFeriados)) {
+                        $event->events()->create([
+                            'name'          => $event->name,
+                            'start_time'    => $startTime,
+                            'end_time'      => $endTime,
+                            'recurrence'    => $event->recurrence,
+                            'color'    => $event->color,
+                        ]);
+                    }
                 }
         }
     }
